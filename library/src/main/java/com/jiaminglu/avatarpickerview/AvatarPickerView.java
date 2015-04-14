@@ -42,7 +42,7 @@ public class AvatarPickerView extends ImageView implements ScaleGestureDetector.
         init(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    int borderWidth;
+    private int borderWidth;
     void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         detector = new ScaleGestureDetector(context, this);
         borderWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, context.getResources().getDisplayMetrics());
@@ -54,10 +54,10 @@ public class AvatarPickerView extends ImageView implements ScaleGestureDetector.
         a.recycle();
     }
 
-    ScaleGestureDetector detector;
+    private ScaleGestureDetector detector;
 
-    float lastX;
-    float lastY;
+    private float lastX;
+    private float lastY;
     @Override
     public boolean onTouchEvent(@NotNull MotionEvent e) {
         detector.onTouchEvent(e);
@@ -72,21 +72,17 @@ public class AvatarPickerView extends ImageView implements ScaleGestureDetector.
         return true;
     }
 
-    Matrix matrix;
-    Paint paint = new Paint();{
+    private Matrix matrix;
+    private Paint paint = new Paint();{
         paint.setColor(0xaf000000);
     }
-    Paint linePaint = new Paint();{
+    private Paint linePaint = new Paint();{
         linePaint.setColor(0xafffffff);
     }
-    Rect bound = new Rect();
-    int avatarSize;
-    int horizPadding;
-    int vertPadding;
-
-    public void resetMatrix() {
-        matrix = null;
-    }
+    private Rect bound = new Rect();
+    private int avatarSize;
+    private int horizPadding;
+    private int vertPadding;
 
     @Override
     public void onDraw(@NotNull Canvas canvas) {
@@ -143,7 +139,7 @@ public class AvatarPickerView extends ImageView implements ScaleGestureDetector.
                 linePaint);
     }
 
-    Matrix invert = new Matrix();
+    private Matrix invert = new Matrix();
     public Bitmap getClippedBitmap(int maxSize) {
         RectF src = new RectF(horizPadding, vertPadding, horizPadding + avatarSize, vertPadding + avatarSize);
         RectF dst = new RectF();
@@ -176,8 +172,8 @@ public class AvatarPickerView extends ImageView implements ScaleGestureDetector.
         return false;
     }
 
-    boolean scaling = false;
-    Matrix scaleMatrix = new Matrix();
+    private boolean scaling = false;
+    private Matrix scaleMatrix = new Matrix();
     @Override
     public boolean onScaleBegin(ScaleGestureDetector detector) {
         if (matrix == null)
