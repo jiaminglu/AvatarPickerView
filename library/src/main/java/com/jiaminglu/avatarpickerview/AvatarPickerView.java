@@ -65,7 +65,7 @@ public class AvatarPickerView extends ImageView implements ScaleGestureDetector.
         detector.onTouchEvent(e);
         if (e.getAction() == MotionEvent.ACTION_DOWN && e.getPointerCount() == 1)
             scaling = false;
-        if (e.getAction() == MotionEvent.ACTION_MOVE && e.getPointerCount() == 1 && !scaling) {
+        if (matrix != null && e.getAction() == MotionEvent.ACTION_MOVE && e.getPointerCount() == 1 && !scaling) {
             matrix.postTranslate(e.getX() - lastX, e.getY() - lastY);
             setImageMatrix(matrix);
         }
